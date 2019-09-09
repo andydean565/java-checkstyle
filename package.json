@@ -1,0 +1,34 @@
+{
+  "name": "java-checkstyle",
+  "version": "0.0.0",
+  "description": "Uses CheckStyle (8.24) (https://checkstyle.sourceforge.io/cmdline.html) to check the styling of your java files.  Option to pass in a config file, defaults to google_check.xml.",
+  "license": "LGPL 2.1",
+  "author": "Lindsay-Needs-Sleep",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lindsay-Needs-Sleep/java-checkstyle.git"
+  },
+  "readme": "README.md",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./test/index.js",
+    "eslint": "node ./node_modules/eslint/bin/eslint src && node ./node_modules/eslint/bin/eslint test && node ./node_modules/eslint/bin/eslint bin"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-semistandard": "~11.0.0",
+    "eslint-config-standard": "~10.2.1",
+    "eslint-plugin-import": "~2.3.0",
+    "eslint-plugin-node": "~5.0.0",
+    "eslint-plugin-promise": "~3.5.0",
+    "eslint-plugin-standard": "~3.0.1",
+    "mocha": "^3.x.x",
+    "should": "^11.x.x",
+    "test-console": "^1.1.0"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "path": "^0.12.7",
+    "yargs": "^14.0.0"
+  }
+}
