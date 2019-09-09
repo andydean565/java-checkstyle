@@ -12,30 +12,28 @@
         callback = callback || function () {};
         if (!configPath) {
             // default config
-            configPath = path.join(__dirname, '../res/google_checks.xml');
+            configPath = path.join(__dirname, '../res/sun_checks.xml');
         }
 
         if (!Array.isArray(paths)) {
             paths = [paths];
         }
-        checkPaths(paths, configPath, callback);
-    };
-
-    function checkPaths (paths, config, callback) {
-        if (paths.length === 0) {
-            return callback();
-        }
-        var p = paths.pop();
-        exec('java -jar ' + path.join(__dirname, '../lib/checkstyle-8.24-all.jar') + ' -c ' + config + ' ' + p, (err, stdout, stderr) => {
-            if (stdout) {
-                console.log(stdout);
-            }
-            if (err) {
+        paths = paths.join(' ');
+        exec('java -jar ' + path.join(__dirname, '../lib/checkstyle-8.24-all.jar') + ' -c ' + configPath + ' ' + paths, (err, stdout, stderr) => {
+            if (stderr.match(/ends with [0-9]* errors/)) {
+                console.log('\x1b[31m%s\x1b[0m', stdout);
+                return callback(stderr);
+            } else if (stderr === '') {
+                console.log('\x1b[31m%s\x1b[0m', stdout);
+                return callback();
+            } else if (err) {
                 return callback(err);
             }
-            checkPaths(paths, config, callback);
+            // Not sure if it is actually possible to get hre
+            console.error(stdout);
+            callback();
         });
-    }
+    };
 
     check.log = function (msg) {
         console.log(msg);

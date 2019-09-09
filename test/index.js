@@ -23,10 +23,10 @@
             it('should output errors for a bad java file', function (done) {
                 var inspect = stdout.inspect();
                 check.runJavaCheck(path.join(__dirname, './res/Bad.java'), null, function (err) {
-                    should.not.exist(err);
+                    should.exist(err);
                     inspect.restore();
                     should.exist(inspect.output);
-                    inspect.output[0].should.match(/\[WARN\]/);
+                    inspect.output[0].should.match(/\[ERROR\]/);
                     done();
                 });
             });
@@ -36,17 +36,17 @@
                     should.not.exist(err);
                     inspect.restore();
                     should.exist(inspect.output);
-                    inspect.output[0].should.not.match(/\[WARN\]/);
+                    inspect.output[0].should.not.match(/\[ERROR\]/);
                     done();
                 });
             });
             it('should output errors for a bad and good java file', function (done) {
                 var inspect = stdout.inspect();
                 check.runJavaCheck([path.join(__dirname, './res/Good.java'), path.join(__dirname, './res/Bad.java')], null, function (err) {
-                    should.not.exist(err);
+                    should.exist(err);
                     inspect.restore();
                     should.exist(inspect.output);
-                    inspect.output[0].should.match(/\[WARN\]/);
+                    inspect.output[0].should.match(/\[ERROR\]/);
                     done();
                 });
             });
@@ -57,7 +57,7 @@
                 exec('node ' + path.join(__dirname, '../bin/index.js') + ' ' + path.join(__dirname, './res/Bad.java'), (err, stdout, stderr) => {
                     should.not.exist(err);
                     should.exist(stdout);
-                    stdout.should.match(/\[WARN\]/);
+                    stdout.should.match(/\[ERROR\]/);
                     done();
                 });
             });
@@ -65,7 +65,7 @@
                 exec('node ' + path.join(__dirname, '../bin/index.js') + ' ' + path.join(__dirname, './res/Good.java'), (err, stdout, stderr) => {
                     should.not.exist(err);
                     should.exist(stdout);
-                    stdout.should.not.match(/\[WARN\]/);
+                    stdout.should.not.match(/\[ERROR\]/);
                     done();
                 });
             });
@@ -75,7 +75,7 @@
                 + ' ' + path.join(__dirname, './res'), (err, stdout, stderr) => {
                     should.not.exist(err);
                     should.exist(stdout);
-                    stdout.should.match(/\[WARN\]/);
+                    stdout.should.match(/\[ERROR\]/);
                     done();
                 });
             });
