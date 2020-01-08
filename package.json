@@ -1,12 +1,12 @@
 {
-  "name": "java-checkstyle",
-  "version": "0.0.1",
-  "description": "Uses CheckStyle (8.24) (https://checkstyle.sourceforge.io/cmdline.html) to check the styling of your java files.  Option to pass in a config file, defaults to google_check.xml.",
+  "name": "java-checkstyle-mod",
+  "version": "0.0.2",
+  "description": "a slighty modified verison of java-checkstyle for my needs in a university project",
   "license": "LGPL 2.1",
-  "author": "Lindsay-Needs-Sleep",
+  "author": "andydean565",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lindsay-Needs-Sleep/java-checkstyle.git"
+    "url": "https://github.com/andydean565/java-checkstyle.git"
   },
   "readme": "README.md",
   "main": "src/index.js",

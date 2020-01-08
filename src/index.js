@@ -6,6 +6,13 @@
     var check = {};
 
     /**
+     * @param {function(report)} callback
+     */
+    check.report = function (string) {
+        return string.split('\n');
+    };
+
+    /**
      * @param {function(err)} callback
      */
     check.runJavaCheck = function (paths, configPath, callback) {
@@ -22,7 +29,8 @@
         exec('java -jar ' + path.join(__dirname, '../lib/checkstyle-8.24-all.jar') + ' -c ' + configPath + ' ' + paths, (err, stdout, stderr) => {
             if (stderr.match(/ends with [0-9]* errors/)) {
                 console.log('\x1b[31m%s\x1b[0m', stdout);
-                return callback(stderr);
+                console.log('\x1b[31m%s\x1b[0m', stderr);
+                return callback(this.report(stdout));
             } else if (stderr === '') {
                 console.log('\x1b[31m%s\x1b[0m', stdout);
                 return callback();
