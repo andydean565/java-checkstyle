@@ -11,7 +11,7 @@
     check.report = function (string) {
         var tmp = string.split('\r');
 
-        for (let index = tmp.length; index > 0; index++) {
+        for (let index = (tmp.length - 1); index >= 0; index--) {
             switch (tmp[index]) {
             case 'Starting audit...\r':
                 tmp.splice(index, 1);
