@@ -13,10 +13,13 @@
 
         for (let index = (tmp.length - 1); index >= 0; index--) {
             switch (tmp[index]) {
-            case 'Starting audit...\r':
+            case 'Starting audit...':
                 tmp.splice(index, 1);
                 break;
-            case 'Audit done.\r':
+            case 'Audit done.':
+                tmp.splice(index, 1);
+                break;
+            case '\n':
                 tmp.splice(index, 1);
                 break;
             case '':
@@ -31,6 +34,11 @@
     };
 
     check.trim = function (string) {
+        // let javaIndex = string.indexOf('.java');
+
+        // eslint-disable-next-line no-useless-escape
+        var javaIndex = string.match('(\\)(\S)(.*)(\S)(.java)/g').index;
+        console.log(javaIndex);
         return string;
     };
 
