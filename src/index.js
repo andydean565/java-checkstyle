@@ -9,7 +9,29 @@
      * @param {function(report)} callback
      */
     check.report = function (string) {
-        return string.split('\n');
+        var tmp = string.split('\r');
+
+        for (let index = tmp.length; index > 0; index++) {
+            switch (tmp[index]) {
+            case 'Starting audit...\r':
+                tmp.splice(index, 1);
+                break;
+            case 'Audit done.\r':
+                tmp.splice(index, 1);
+                break;
+            case '':
+                tmp.splice(index, 1);
+                break;
+            default:
+                tmp[index] = this.trim(tmp[index]);
+                break;
+            }
+        }
+        return tmp;
+    };
+
+    check.trim = function (string) {
+        return string;
     };
 
     /**
