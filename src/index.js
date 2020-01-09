@@ -55,7 +55,7 @@
         callback = callback || function () {};
         if (!configPath) {
             // default config
-            configPath = path.join(__dirname, '../res/google_checks.xml');
+            configPath = path.join(__dirname, '../res/sun_checks.xml');
         }
 
         if (!Array.isArray(paths)) {
