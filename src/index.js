@@ -43,7 +43,7 @@
         // eslint-disable-next-line no-cond-assign
         while (match = regex.exec(str)) {
             // console.log(match.index);
-            tmp = str.substring(match.index, str.length);
+            tmp = str.substring((match.index + 1), str.length);
         }
         return tmp;
     };
