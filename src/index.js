@@ -23,7 +23,7 @@
             case '\n':
                 tmp.splice(index, 1);
                 break;
-            case '':
+            case '' || null:
                 tmp.splice(index, 1);
                 break;
             default:
