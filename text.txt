@@ -1,7 +1,7 @@
-var match = /\\(?:.(?!\\))+(java)/g;
 var str = "[ERROR] C:\\Users\\andre\\Projects\\CSYM023\\backend\\.\\tmp\\Attempt.java:3:1: File contains tab characters (this is";
-var array1;
-while ((array1 = match.exec(str)) !== null) {
-  console.log("Found " + array1[0] + ". Next starts at " + match.index + ".");
+var patt = /\\(?:.(?!\\))+(java)/g;
+
+while (match = patt.exec(str)) {
+  console.log(match.index);
+  console.log(str.substring(match.index, str.length));
 }
-console.log("Done.")

@@ -4,6 +4,7 @@
     var exec = require('child_process').exec;
     var path = require('path');
     var check = {};
+    var regex = /\\(?:.(?!\\))+(java)/g;
 
     /**
      * @param {function(report)} callback
@@ -33,13 +34,18 @@
         return tmp;
     };
 
-    check.trim = function (string) {
-        // let javaIndex = string.indexOf('.java');
-
-        // eslint-disable-next-line no-useless-escape
-        var javaIndex = string.match('(\\)(\S)(.*)(\S)(.java)/g').index;
-        console.log(javaIndex);
-        return string;
+    /**
+     * @param {function(str)} callback
+     */
+    check.trim = function (str) {
+        var tmp;
+        var match;
+        // eslint-disable-next-line no-cond-assign
+        while (match = regex.exec(str)) {
+            // console.log(match.index);
+            tmp = str.substring(match.index, str.length);
+        }
+        return tmp;
     };
 
     /**
