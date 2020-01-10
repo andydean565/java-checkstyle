@@ -23,9 +23,6 @@
             case 'Audit done.':
                 tmp.splice(index, 1);
                 break;
-            case '\n':
-                tmp.splice(index, 1);
-                break;
             case '' || null:
                 tmp.splice(index, 1);
                 break;
@@ -44,9 +41,10 @@
     check.trim = function (str) {
         var tmp;
         var match;
+        console.log(str);
         // eslint-disable-next-line no-cond-assign
         while (match = regex.exec(str)) {
-            // console.log(match.index);
+            console.log('match found :' + match.index);
             tmp = str.substring((match.index + 1), str.length);
         }
         console.log(tmp);
