@@ -1,6 +1,6 @@
 {
   "name": "java-checkstyle-mod",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "a slighty modified verison of java-checkstyle for my needs in a university project",
   "license": "LGPL 2.1",
   "author": "andydean565",
