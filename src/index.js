@@ -2,6 +2,7 @@
     'use strict';
 
     var exec = require('child_process').exec;
+    var os = require('os');
     var path = require('path');
     var check = {};
     var regex = /\\(?:.(?!\\))+(java)/g;
@@ -12,7 +13,7 @@
     check.report = function (string) {
         console.log('report');
         console.log(string);
-        var tmp = string.split('\r');
+        var tmp = string.split(os.EOL);
         console.log('Report uncut length : ' + tmp.length);
         for (let index = (tmp.length - 1); index >= 0; index--) {
             switch (tmp[index]) {
