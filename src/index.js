@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 (function () {
     'use strict';
 
@@ -5,7 +6,8 @@
     var os = require('os');
     var path = require('path');
     var check = {};
-    var regex = /\\(?:.(?!\\))+(java)/g;
+    var regexWin = /\\(?:.(?!\\))+(java)/g;
+    var regexLinux = /\/(?:.(?!\\))+(java)/g;
 
     /**
      * @param {function(report)} callback
@@ -17,18 +19,18 @@
         console.log('Report uncut length : ' + tmp.length);
         for (let index = (tmp.length - 1); index >= 0; index--) {
             switch (tmp[index]) {
-            case 'Starting audit...':
-                tmp.splice(index, 1);
-                break;
-            case 'Audit done.':
-                tmp.splice(index, 1);
-                break;
-            case '' || null:
-                tmp.splice(index, 1);
-                break;
-            default:
-                tmp[index] = this.trim(tmp[index]);
-                break;
+                case 'Starting audit...':
+                    tmp.splice(index, 1);
+                    break;
+                case 'Audit done.':
+                    tmp.splice(index, 1);
+                    break;
+                case '' || null:
+                    tmp.splice(index, 1);
+                    break;
+                default:
+                    tmp[index] = this.trim(tmp[index]);
+                    break;
             }
         }
         console.log('Report cut length : ' + tmp.length);
@@ -43,10 +45,19 @@
         var match;
         console.log(str);
         // eslint-disable-next-line no-cond-assign
-        while (match = regex.exec(str)) {
+        while (match = regexWin.exec(str)) {
             console.log('match found :' + match.index);
             tmp = str.substring((match.index + 1), str.length);
         }
+
+        if (tmp === undefined) {
+            // eslint-disable-next-line no-cond-assign
+            while (match = regexLinux.exec(str)) {
+                console.log('match found :' + match.index);
+                tmp = str.substring((match.index + 1), str.length);
+            }
+        }
+
         console.log(tmp);
         return tmp;
     };
