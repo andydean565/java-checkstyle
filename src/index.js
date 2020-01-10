@@ -11,7 +11,7 @@
      */
     check.report = function (string) {
         var tmp = string.split('\r');
-
+        console.log('Report uncut length : ' + tmp.length);
         for (let index = (tmp.length - 1); index >= 0; index--) {
             switch (tmp[index]) {
             case 'Starting audit...':
@@ -31,6 +31,7 @@
                 break;
             }
         }
+        console.log('Report cut length : ' + tmp.length);
         return tmp;
     };
 
@@ -45,6 +46,7 @@
             // console.log(match.index);
             tmp = str.substring((match.index + 1), str.length);
         }
+        console.log(tmp);
         return tmp;
     };
 
@@ -64,8 +66,8 @@
         paths = paths.join(' ');
         exec('java -jar ' + path.join(__dirname, '../lib/checkstyle-8.24-all.jar') + ' -c ' + configPath + ' ' + paths, (err, stdout, stderr) => {
             if (stderr.match(/ends with [0-9]* errors/)) {
-                console.log('\x1b[31m%s\x1b[0m', stdout);
-                console.log('\x1b[31m%s\x1b[0m', stderr);
+                // console.log('\x1b[31m%s\x1b[0m', stdout);
+                // console.log('\x1b[31m%s\x1b[0m', stderr);
                 return callback(this.report(stdout));
             } else if (stderr === '') {
                 console.log('\x1b[31m%s\x1b[0m', stdout);
