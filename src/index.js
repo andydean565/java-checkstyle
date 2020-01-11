@@ -7,16 +7,14 @@
     var path = require('path');
     var check = {};
     var regexWin = /\\(?:.(?!\\))+(java)/g;
-    var regexLinux = /\/(?:.(?!\\))+(java)/g;
+    var regexLinux = /\/(?:.(?!\/))+(java)/g;
 
     /**
      * @param {function(report)} callback
      */
     check.report = function (string) {
         console.log('report');
-        console.log(string);
         var tmp = string.split(os.EOL);
-        console.log('Report uncut length : ' + tmp.length);
         for (let index = (tmp.length - 1); index >= 0; index--) {
             switch (tmp[index]) {
                 case 'Starting audit...':
@@ -33,7 +31,6 @@
                     break;
             }
         }
-        console.log('Report cut length : ' + tmp.length);
         return tmp;
     };
 
@@ -43,22 +40,18 @@
     check.trim = function (str) {
         var tmp;
         var match;
-        console.log(str);
         // eslint-disable-next-line no-cond-assign
         while (match = regexWin.exec(str)) {
-            console.log('match found :' + match.index);
             tmp = str.substring((match.index + 1), str.length);
         }
 
         if (tmp === undefined) {
             // eslint-disable-next-line no-cond-assign
             while (match = regexLinux.exec(str)) {
-                console.log('match found :' + match.index);
                 tmp = str.substring((match.index + 1), str.length);
             }
         }
 
-        console.log(tmp);
         return tmp;
     };
 
