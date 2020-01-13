@@ -76,7 +76,7 @@
                 return callback(this.report(stdout));
             } else if (stderr === '') {
                 console.log('\x1b[31m%s\x1b[0m', stdout);
-                return callback();
+                return callback(this.report(stdout));
             } else if (err) {
                 return callback(err);
             }
