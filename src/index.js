@@ -25,6 +25,9 @@
             case '':
                 tmp.splice(index, 1);
                 break;
+            case null:
+                tmp.splice(index, 1);
+                break;
             default:
                 tmp[index] = this.trim(tmp[index]);
                 break;
