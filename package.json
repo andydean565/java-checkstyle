@@ -1,6 +1,6 @@
 {
   "name": "java-checkstyle-mod",
-  "version": "0.0.4",
+  "version": "0.1.2",
   "description": "a slighty modified verison of java-checkstyle for my needs in a university project",
   "license": "LGPL 2.1",
   "author": "andydean565",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "child_process": "^1.0.2",
+    "os": "^0.1.1",
     "path": "^0.12.7",
     "yargs": "^14.0.0"
   }
